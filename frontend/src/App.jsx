@@ -50,8 +50,8 @@ export default function App() {
     fetchUserData();
   }, []);
   return (
-    <div className="h-screen flex flex-col">
-      <Router>
+    <Router>
+      <div className="h-screen flex flex-col">
         <Navbar />
         <div className="flex-1 overflow-y-auto">
           <Routes>
@@ -65,7 +65,7 @@ export default function App() {
             <Route exact path='/codeEditor' element={<CodeEditor />} />
           </Routes>
         </div>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
