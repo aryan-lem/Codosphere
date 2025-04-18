@@ -1,11 +1,17 @@
-# render.yaml
 services:
   - type: web
-    name: your-site-name
-    env: static
+    name: codosphere
+    # for a Vite build, tell Render this is a static site
+    runtime: static
+    # how to build your app
+    buildCommand: npm install && npm run build
+    # where Vite spits out the static assets
     staticPublishPath: dist
-    buildCommand: npm run build
+    # optionally control whether Render auto-deploys on git pushes
+    autoDeploy: true
+
+    # THIS is the magic: rewrite *every* incoming path back to index.html
     routes:
       - type: rewrite
-        source: /*
+        source: '/*'
         destination: /index.html
