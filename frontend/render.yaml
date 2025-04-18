@@ -1,17 +1,14 @@
 services:
   - type: web
     name: codosphere
-    # for a Vite build, tell Render this is a static site
     runtime: static
-    # how to build your app
     buildCommand: npm install && npm run build
-    # where Vite spits out the static assets
     staticPublishPath: dist
-    # optionally control whether Render auto-deploys on git pushes
-    autoDeploy: true
-
-    # THIS is the magic: rewrite *every* incoming path back to index.html
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
     routes:
       - type: rewrite
-        source: '/*'
+        source: /*
         destination: /index.html
